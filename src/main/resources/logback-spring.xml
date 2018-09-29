@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <property name="log.dir" value="logs"/>
+    <property name="log.fileName" value="log"/>
+    <property name="consolePattern" value="%date{yyyy-MM-dd HH:mm:ss} |%highlight(%-5level)| %logger.%method: %msg%n"/>
+    <property name="filePattern" value="%date{yyyy-MM-dd HH:mm:ss} |%level| %logger.%method: %msg%n"/>
+
+    <!-- 控制台打印日志 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>　　　　　
+            <pattern>${consolePattern}</pattern>　　　　
+        </encoder>
+    </appender>
+    <!-- 日志输出到文件 -->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${log.dir}/${log.fileName}</file>
+        <encoder>
+            <pattern>${filePattern}</pattern>
+        </encoder>
+        <append>true</append>
+    </appender>
+
+    <root level="info">　　　　
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>
