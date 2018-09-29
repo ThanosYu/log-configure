@@ -11,7 +11,7 @@
             <pattern>${consolePattern}</pattern>　　　　
         </encoder>
     </appender>
-    <!-- 日志输出到文件 -->
+    <!-- 日志输出文件 -->
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <file>${log.dir}/${log.fileName}</file>
         <encoder>
