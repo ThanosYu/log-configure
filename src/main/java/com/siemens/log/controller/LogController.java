@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author Thanos Yu
  * @date 9/28/2018 1:56 PM
@@ -19,8 +22,9 @@ public class LogController {
     private Logger log = LoggerFactory.getLogger(LogController.class);
 
     @RequestMapping(value = "/level", method = RequestMethod.GET)
-    public String updateLogbackLevel(@RequestParam(value = "level") String level,
-                                     @RequestParam(value = "packageName", defaultValue = "") String packageName) throws Exception {
+    public Map<String, String> updateLogbackLevel(@RequestParam(value = "level") String level,
+                                                  @RequestParam(value = "packageName", defaultValue = "") String packageName) throws Exception {
+        Map<String, String> map = new HashMap<>();
         try {
             LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
             if (packageName == null || packageName.isEmpty()) {
@@ -34,7 +38,12 @@ public class LogController {
             }
         } catch (Exception e) {
             log.info("--------------------------------------Change log level failed");
+            map.put("code", "1");
+            map.put("msg", "failed");
+            return map;
         }
-        return "success";
+        map.put("code", "0");
+        map.put("msg", "success");
+        return map;
     }
 }
