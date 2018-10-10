@@ -16,7 +16,7 @@
     </appender>
     <!-- 日志输出文件 -->
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>${log.dir}/${log.fileName}</file>
+        <file>${LOG_PATH}/${LOG_FILE}</file>
         <encoder>
             <pattern>${filePattern}</pattern>
         </encoder>
