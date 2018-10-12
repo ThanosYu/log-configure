@@ -1,5 +1,6 @@
 package com.siemens.log.controller;
 
+import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.LoggerContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,11 +29,11 @@ public class LogController {
         try {
             LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
             if (packageName == null || packageName.isEmpty()) {
-                loggerContext.getLogger("root").setLevel(ch.qos.logback.classic.Level.toLevel(level));
+                loggerContext.getLogger("root").setLevel(Level.toLevel(level));
                 log.debug("--------------------------------------change log level of all ");
                 log.info("--------------------------------------change log level of all ");
             } else {
-                loggerContext.getLogger(packageName).setLevel(ch.qos.logback.classic.Level.valueOf(level));
+                loggerContext.getLogger(packageName).setLevel(Level.valueOf(level));
                 log.debug("--------------------------------------change log level of " + packageName);
                 log.info("--------------------------------------change log level of " + packageName);
             }
